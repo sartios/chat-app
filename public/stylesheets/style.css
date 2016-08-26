@@ -3,7 +3,7 @@ html{
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
   height: -moz-calc(100% - 20px);
   height: -webkit-calc(100% - 20px);
   height: calc(100% - 20px);
@@ -30,10 +30,15 @@ input#message{
   width: -moz-calc(100% - 80px);
   width: -webkit-calc(100% - 80px);
   width: calc(100% - 80px);
+  display: inline !important;
 }
 
 input#send{
   width: 74px;
+}
+
+.enter-message-div{
+  padding-bottom: 10px;
 }
 
 header{
@@ -54,7 +59,6 @@ footer{
   background-color: #4192C1;
   color: #FFFFFF;
   bottom: 0;
-  position: absolute;
   width: 100%;
   margin: 0px;
   margin-bottom: 10px;

@@ -14,5 +14,7 @@ block content
               input#setname.btn.btn-primary(value="Set Name")
   section#chatroom
     div#messages
-    input#message(type='text', placeholder='Enter your message here')
-    input#send(type='button', value='Send')
+    div.enter-message-div
+      div.form-group
+        input#message.form-control(type='text', placeholder='Enter your message here')
+        input#send.btn.btn-primary.pull-right(type='button', value='Send')
