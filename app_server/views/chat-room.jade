@@ -12,9 +12,13 @@ block content
               input#nickname.form-control(type='text')
             div.form-group
               input#setname.btn.btn-primary(value="Set Name")
-  section#chatroom
-    div#messages
-    div.enter-message-div
-      div.form-group
-        input#message.form-control(type='text', placeholder='Enter your message here')
-        input#send.btn.btn-primary.pull-right(type='button', value='Send')
+  div.container
+    div.row
+      div.col-sm-4
+        div#users
+      div#chatroom.col-sm-8
+        div#messages
+        div.enter-message-div
+          div.form-group
+            input#message.form-control(type='text', placeholder='Enter your message here')
+            input#send.btn.btn-primary.pull-right(type='button', value='Send')

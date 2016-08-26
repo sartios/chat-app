@@ -3,11 +3,15 @@ var io = require('socket.io');
 var users = [];
 var connections = [];
 
+var chatInFra, chatCom;
+
 
 exports.initialize = function(server){
   io = io.listen(server);
-  var chatInFra = io.of('/chatInFra').on('connection', handleSocket);
-  var chatCom = io.of('/chatCom').on('connection', handleSocket);
+  chatInFra = io.of('/chatInFra');
+  chatInFra.on('connection', handleSocket);
+  chatCom = io.of('/chatCom');
+  chatCom.on('connection', handleSocket);
 };
 
 var handleSocket = function(socket){
@@ -49,5 +53,11 @@ var handleSetName = function(socket){
     socket.send(JSON.stringify({type:'serverMessage',
       message: 'Welcome to the most interesting char roon on earth!!'
     }));
+    updateUsers();
   });
+};
+
+var updateUsers = function(){
+  chatInFra.emit('update_users', users);
+  chatCom.emit('update_users', users);
 };
