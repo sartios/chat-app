@@ -23,8 +23,7 @@ socket.on('name_set', function(data){
   $('#send').click(function(){
     var data = {
       message: $('#message').val(),
-      type: 'userMessage',
-      username: name
+      type: 'userMessage'
     };
     socket.send(JSON.stringify(data));
     $('#message').val('');
@@ -36,7 +35,7 @@ $(function(){
   $(window).load(function(){
     $('#nameform').show();
   });
-  
+
   $('#setname').click(setName);
   function setName(){
     name = $('#nickname').val();
