@@ -1,4 +1,4 @@
-var socket = io.connect('/');
+var socket = io.connect('/chatInFra');
 
 var name;
 
@@ -33,8 +33,11 @@ socket.on('name_set', function(data){
 
 // On document.ready
 $(function(){
+  $(window).load(function(){
+    $('#nameform').show();
+  });
+  
   $('#setname').click(setName);
-
   function setName(){
     name = $('#nickname').val();
     socket.emit("set_name", {username: name});

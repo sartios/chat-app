@@ -1,12 +1,17 @@
 extends layout
 block content
-  section#nameform.modal
-    div.backdrop
-    div.popup
-      div.pophead Please enter a nickname
-      div.popbody
-        input#nickname(type='text')
-        input#setname(type='button', value='Set Name')
+  div#nameform.modal
+    div.modal-dialog.modal-lg
+      div.modal-content
+        div.modal-header
+          h4 Please enter a nickname
+        div.modal-body
+          form.form-horizotanl
+            div.form-group
+              label(for="nickname") Nickname
+              input#nickname.form-control(type='text')
+            div.form-group
+              input#setname.btn.btn-primary(value="Set Name")
   section#chatroom
     div#messages
     input#message(type='text', placeholder='Enter your message here')
