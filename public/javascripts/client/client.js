@@ -11,7 +11,7 @@
 
     message.keyup(function(key){
       if(key.which==13){
-        sendMessage()
+        sendMessage();
       }
     });
 
