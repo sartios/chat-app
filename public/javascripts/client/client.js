@@ -4,10 +4,12 @@
   // On document.ready
   $(function(){
     var name;
+    var room;
     var users = $('#users');
     var messages = $('#messages');
     var namePopup = $('#nameform');
     var message = $('#message');
+    var rooms = $('#rooms');
 
     message.keyup(function(key){
       if(key.which==13){
@@ -22,7 +24,8 @@
     $('#setname').click(setName);
     function setName(){
       name = $('#nickname').val();
-      socket.emit("set_name", {username: name});
+      room = $("input[type='radio']:checked").val();
+      socket.emit("set_name", {username: name, room: room});
     }
 
     socket.on('update_users', handleUpdateUsers);
@@ -60,7 +63,8 @@
     function sendMessage(){
       var data = {
         message: $('#message').val(),
-        type: 'userMessage'
+        type: 'userMessage',
+        room: room
       };
       socket.send(JSON.stringify(data));
       $('#message').val('');

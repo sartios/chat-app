@@ -2,6 +2,7 @@ var io = require('socket.io');
 
 var users = [];
 var connections = [];
+var rooms = [];
 
 var chatInFra, chatCom;
 
@@ -34,7 +35,8 @@ var handleMessage = function(socket){
     message = JSON.parse(message);
     if(message.type == 'userMessage'){
         message.username = socket.username;
-        socket.broadcast.send(JSON.stringify(message));
+        socket.to(message.room).broadcast.send(JSON.stringify(message));
+        //socket.broadcast.send(JSON.stringify(message));
         message.type = "myMessage";
         socket.send(JSON.stringify(message));
       }
@@ -49,9 +51,12 @@ var handleSetName = function(socket){
       connections[index] = socket;
       users.push(socket.username);
     }
+
+    rooms.push(data.room);
+    socket.join(data.room);
     socket.emit('name_set', data);
     socket.send(JSON.stringify({type:'serverMessage',
-      message: 'Welcome to the most interesting char roon on earth!!'
+      message: '<h3>'+data.room+'</h3><br/>Welcome to the most interesting char room on earth!!'
     }));
     updateUsers();
   });

@@ -11,6 +11,17 @@ block content
               label(for="nickname") Nickname
               input#nickname.form-control(type='text')
             div.form-group
+              div#rooms.rooms
+                .radio
+                  label Room-1
+                    input(type='radio', name='optroom', value='room-1')
+                .radio
+                  label Room-2
+                    input(type='radio', name='optroom', value='room-2')
+                .radio
+                  label Room-3
+                    input(type='radio', name='optroom', value='room-3')
+            div.form-group
               input#setname.btn.btn-primary(value="Set Name")
   div.container
     div.row
