@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var socketIO = require('socket.io');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackConfig = require('./webpack.config.js');
+var webpackConfig = require('./webpack.config');
 
 var app = express();
 var server = http.createServer(app);
