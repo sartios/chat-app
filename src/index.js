@@ -8,6 +8,15 @@ var App = React.createClass({
 			messages: []
 		}
 	},
+	componentDidMount: function(){
+		this.socket = io('/');
+		this.socket.on('message', this.handleMessage);
+	},
+	handleMessage: function(message){
+		this.setState({
+				messages: [message, ...this.state.messages]
+		});
+	},
 	handleSubmit: function(e){
 		var body = e.target.value;
 		if(e.keyCode === 13 && body){
@@ -20,6 +29,7 @@ var App = React.createClass({
 			this.setState({
 				messages: messages
 			});
+			this.socket.emit('message', body);
 			e.target.value = '';
 		}
 	},

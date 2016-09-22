@@ -15,4 +15,14 @@ app.use(express.static(__dirname + '/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({extended: false}));
 
+
+io.on('connection', function(socket){
+	socket.on('message', function(body){
+		socket.broadcast.emit('message', {
+			body: body,
+			from: socket.id.slice(8)
+		});
+	});
+});
+
 server.listen(3001);
