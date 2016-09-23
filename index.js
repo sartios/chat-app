@@ -16,6 +16,21 @@ app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({extended: false}));
 
 
+app.post('/', function(req, res){
+	var Body = req.body.Body,
+			From = req.body.From,
+			message= {
+				body: Body,
+				from: From
+			};
+	io.emit('message', message);
+	res.status(200);
+	res.json({
+		"message": "Thanx for texting"
+	});
+});
+
+
 io.on('connection', function(socket){
 	socket.on('message', function(body){
 		socket.broadcast.emit('message', {
