@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var io = require('socket.io/node_modules/socket.io-client');
+var ChatRoom = require('./components/ChatRoom');
 
 var App = React.createClass({
 	getInitialState: function(){
@@ -42,6 +43,7 @@ var App = React.createClass({
 				<h1>Hello World</h1>
 				<input type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit}/>
 				{messages}
+				<ChatRoom/>
 			</div>);
 	}
 });
