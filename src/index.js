@@ -35,7 +35,8 @@ var App = React.createClass({
 	},
 	render: function(){
 		var messages = this.state.messages.map(function(message, index){
-			return <li key={index}><b>{message.from}:</b>{message.body}</li>
+			var img = message.img ? <img src={message.img} width='100' height='50'/> : null;
+			return <li key={index}><b>{message.from}:</b>{message.body}{img}</li>
 		})
 		return (<div>
 				<h1>Hello World</h1>

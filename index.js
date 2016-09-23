@@ -19,9 +19,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.post('/', function(req, res){
 	var Body = req.body.Body,
 			From = req.body.From,
+			MediaUrl = req.body.Media,
 			message= {
 				body: Body,
-				from: From
+				from: From,
+				img: MediaUrl
 			};
 	io.emit('message', message);
 	res.status(200);
