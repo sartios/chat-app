@@ -1,20 +1,28 @@
 var React = require('react');
+var MessageActions = require('../actions/MessageActions');
+var MessageStore = require('../stores/MessageStore');
 var io = require('socket.io/node_modules/socket.io-client');
+
+var socket = io('/');
 
 var MessageBox = React.createClass({
   getInitialState: function(){
 		return {
-			messages: []
+			messages: MessageStore.getMessages()
 		}
 	},
 	componentDidMount: function(){
-		this.socket = io('/');
-		this.socket.on('message', this.handleMessage);
+		socket.on('message', this.handleMessage);
+		MessageStore.addChangeListener(this.updateMessages);
+	},
+	updateMessages: function(){
+		this.setState({
+				messages: MessageStore.getMessages()
+		});
 	},
 	handleMessage: function(message){
-		this.setState({
-				messages: [message, ...this.state.messages]
-		});
+		MessageActions.create(message);
+		this.updateMessages();
 	},
 	handleSubmit: function(e){
 		var body = e.target.value;
@@ -23,12 +31,8 @@ var MessageBox = React.createClass({
 				body,
 				from: 'Me'
 			}
-			var messages = this.state.messages;
-			messages.push(message);
-			this.setState({
-				messages: messages
-			});
-			this.socket.emit('message', body);
+			MessageActions.create(message);
+			socket.emit('message', body);
 			e.target.value = '';
 		}
 	},
