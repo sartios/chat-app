@@ -1,6 +1,6 @@
 var React = require('react');
 var ConnectedUsers = require('./ConnectedUsers');
-//var RoomMessages = require('.');
+var RoomMessages = require('./RoomMessages');
 var MessageBox = require('./MessageBox');
 
 
@@ -9,6 +9,7 @@ var ChatRoom = React.createClass({
     return (<div className="container">
       <div className="row">
         <ConnectedUsers />
+        <RoomMessages/>
         <MessageBox />
       </div>
     </div>)
