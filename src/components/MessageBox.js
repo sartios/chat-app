@@ -2,7 +2,7 @@ var React = require('react');
 var MessageActions = require('../actions/MessageActions');
 var MessageStore = require('../stores/MessageStore');
 //var io = require('socket.io/node_modules/socket.io-client');
-var SocketHandler = require('../api/SocketHandler');
+//var SocketHandler = require('../api/SocketHandler');
 
 //var socket = io('/');
 
@@ -13,8 +13,7 @@ var MessageBox = React.createClass({
 		}
 	},
 	componentDidMount: function(){
-		SocketHandler.init(this.handleMessage);
-		//socket.on('message', this.handleMessage);
+		MessageActions.init(this.handleMessage);
 		MessageStore.addChangeListener(this.updateMessages);
 	},
 	updateMessages: function(){
@@ -34,8 +33,7 @@ var MessageBox = React.createClass({
 				from: 'Me'
 			}
 			MessageActions.create(message);
-			//socket.emit('message', body);
-			SocketHandler.emit(body);
+			MessageActions.emitMessage(body);
 			e.target.value = '';
 		}
 	},
