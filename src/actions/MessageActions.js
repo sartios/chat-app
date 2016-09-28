@@ -11,10 +11,12 @@ var MessageActions = {
     });
   },
   emitMessage: function(body){
-  	SocketHandler.emit(body);
+  	SocketHandler.emit('message', body);  
   },
   init: function(callback){
-  	SocketHandler.init(callback);
+  	//SocketHandler.init(callback);
+    SocketHandler.connect('/');
+    SocketHandler.addEventListener('message', callback);
   }
 };
 
