@@ -6,8 +6,9 @@ require('bootstrap/less/bootstrap.less');
 var App = React.createClass({
 	render: function(){
 
-		return (<div>
-				<ChatRoom/>
+		return (
+			<div className="container-fluid">
+					<ChatRoom/>
 			</div>);
 	}
 });

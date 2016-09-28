@@ -6,13 +6,16 @@ var MessageBox = require('./MessageBox');
 
 var ChatRoom = React.createClass({
   render: function(){
-    return (<div className="container">
+    return (
       <div className="row">
-        <ConnectedUsers />
-        <RoomMessages/>
-        <MessageBox />
-      </div>
-    </div>)
+        <div className="col-sm-4">
+            <ConnectedUsers />
+        </div>
+        <div className="col-sm-8">
+          <RoomMessages/>
+          <MessageBox />
+        </div>
+      </div>)
   }
 });
 
