@@ -1,12 +1,14 @@
 var io = require('socket.io/node_modules/socket.io-client');
 
 var SocketHandler = {
-	init: function(callback){
-		this.socket = io('/');
-		this.socket.on('message', callback);
+	addEventListener: function(event, callback){
+		this.socket.on(event, callback);
 	},
-	emit: function(body){
-		this.socket.emit('message', body);
+	emit: function(event, message){
+		this.socket.emit(event, message);
+	},
+	connect: function(room){
+		this.socket = io(room);
 	}
 };
 
