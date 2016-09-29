@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var UserConstants = require('../constants/UserConstants');
+var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
@@ -11,7 +12,7 @@ function createUser(user){
 }
 
 var UserStore = assign({}, EventEmitter.prototype, {
-	getUses : function(){
+	getUsers : function(){
 		return users;
 	},
 	emitChange: function(){
