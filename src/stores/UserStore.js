@@ -11,6 +11,10 @@ function createUser(user){
 	users.push(user);
 }
 
+function disconnectUser(user){
+	users.splice(users.indexOf(user), 1);
+}
+
 var UserStore = assign({}, EventEmitter.prototype, {
 	getUsers : function(){
 		return users;
@@ -30,6 +34,10 @@ AppDispatcher.register(function(action){
 	switch(action.actionType){
 		case UserConstants.USER_CONNECT:
 			createUser(action.user);
+			UserStore.emitChange();
+		break;
+		case UserConstants.USER_DISCONNECT:
+			disconnectUser(action.user);
 			UserStore.emitChange();
 		break;
 	}
