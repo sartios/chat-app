@@ -1,19 +1,28 @@
 var React = require('react');
+var UserActions = require('../actions/UserActions');
+var UserStore = require('../stores/UserStore');
+
+var getState = function(){
+  return {
+    users: UserStore.getUsers()
+  }
+}
 
 var ConnectedUsers = React.createClass({
   getInitialState: function(){
-    var users = [];
-    users.push({name: 'User 1'});
-    users.push({name: 'User 2'});
-    users.push({name: 'User 3'});
-    return {
-      users: users
-    }
+    return getState();
+  },
+  componentDidMount: function(){
+    UserActions.init();
+    UserStore.addChangeListener(this._onChange);
   },
   _renderUsers: function(){
     return this.state.users.map(function(user, index){
-      return <li key={index}>{user.name}</li>
+      return <li key={index}><span className="glyphicon glyphicon-user">{user.id}</span></li>
     })
+  },
+  _onChange: function(){
+    this.setState(getState());
   },
   render: function(){
     var users = this._renderUsers();
