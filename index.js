@@ -38,7 +38,7 @@ var connections = [];
 io.on('connection', function(socket){
 
 	connections.push(socket);
-	
+
 	socket.broadcast.emit('user_connected',{
 		id: socket.id.slice(8)
 	});
@@ -54,6 +54,9 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(data){
     connections.splice(connections.indexOf(socket), 1);
     console.log('Disconnected: %s sockects connected', connections.length);
+		socket.broadcast.emit('user_disconnected', {
+			id: socket.id.slice(8)
+		})
   });
 
 });
