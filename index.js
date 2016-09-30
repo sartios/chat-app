@@ -10,6 +10,8 @@ var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 
+var connections = [];
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
@@ -32,8 +34,12 @@ app.post('/', function(req, res){
 	});
 });
 
-
-var connections = [];
+app.get('/connections', function(req, res){
+	res.status(200);
+	res.json({
+		"connections": connections
+	});
+});
 
 io.on('connection', function(socket){
 
