@@ -5,6 +5,8 @@ var socketIO = require('socket.io');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackConfig = require('./webpack.config');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+
 
 var app = express();
 var server = http.createServer(app);
@@ -15,6 +17,9 @@ var connections = [];
 
 app.use(express.static(__dirname + '/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
+app.use(webpackHotMiddleware(webpack(webpackConfig), {
+    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+  }));
 app.use(bodyParser.urlencoded({extended: false}));
 
 
