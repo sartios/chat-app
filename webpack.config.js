@@ -1,4 +1,6 @@
-module.exports = {
+var devConfig = require('./cfg/dev');
+
+var config = {
 	entry: __dirname + '/src',
 	output: {
 		path: '/',
@@ -37,3 +39,5 @@ module.exports = {
 		]
 	}
 };
+
+module.exports = devConfig;
