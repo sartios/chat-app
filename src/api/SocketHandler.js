@@ -1,4 +1,4 @@
-var io = require('socket.io/node_modules/socket.io-client');
+var io = require('socket.io-client');
 
 var SocketHandler = {
 	addEventListener: function(event, callback){
@@ -12,7 +12,7 @@ var SocketHandler = {
 	},
 	getSocket: function(){
 		if(this.socket === undefined){
-			this.socket = io('/');		
+			this.socket = io('/');
 		}
 		return this.socket;
 	}
