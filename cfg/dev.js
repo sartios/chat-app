@@ -10,11 +10,13 @@ var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 var config = assign({}, baseConfig, {
   entry: [
+     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/index'
   ],
   cache: true,
   devtool: 'source-maps',
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
@@ -26,8 +28,9 @@ var config = assign({}, baseConfig, {
 
 config.module.loaders.push({
   test: /\.(js|jsx)$/,
-  loader: 'babel-loader',
-  exclude: '/npm_modules/'
+  loader: 'react-hot!babel-loader',
+  include: path.join(__dirname, '/../src'),
+  exclude:  path.join(__dirname, '/../npm_modules')
 });
 
 module.exports = config;
