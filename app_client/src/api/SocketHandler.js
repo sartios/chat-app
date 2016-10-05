@@ -12,7 +12,7 @@ var SocketHandler = {
 	},
 	getSocket: function(){
 		if(this.socket === undefined){
-			this.socket = io('/');
+			this.socket = io('http://localhost:8000/');
 		}
 		return this.socket;
 	}

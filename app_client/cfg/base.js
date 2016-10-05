@@ -7,12 +7,12 @@ module.exports = {
   debug: true,
   devtool: 'source-maps',
   output:{
-    path: path.join(__dirname, '/../public/js'),
+    path: path.join(__dirname, '/../src/dist/assets'),
     filename: 'bundle.js',
     publicPath: defaultSettings.publicPath
   },
   devServer: {
-    contentBase: './src/',
+    contentBase: './app_client/src/',
     historyApiFallback: true,
     hot: true,
     port: defaultSettings.port,
