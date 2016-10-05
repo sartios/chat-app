@@ -22,7 +22,7 @@ var RoomMessages = React.createClass({
 			return <li key={index}><b>{message.from}:</b>{message.body}{img}</li>
 		});
     return (
-    	<div>
+    	<div id="messages">
 			{messages}
     	</div>)
 	}

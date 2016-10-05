@@ -26,7 +26,7 @@ var ConnectedUsers = React.createClass({
   },
   render: function(){
     var users = this._renderUsers();
-    return (<div className="col-sm-4">
+    return (<div>
       {users}
     </div>)
   }

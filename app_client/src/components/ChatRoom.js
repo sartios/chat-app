@@ -11,7 +11,7 @@ var ChatRoom = React.createClass({
         <div className="col-sm-4">
             <ConnectedUsers />
         </div>
-        <div className="col-sm-8">
+        <div id="chatroom" className="col-sm-8">
           <RoomMessages/>
           <MessageBox />
         </div>

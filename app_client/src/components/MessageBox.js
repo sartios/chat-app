@@ -27,10 +27,13 @@ var MessageBox = React.createClass({
 		}
 	},
   render: function(){
-    return (<div>
-      <input type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit}/>
-    </div>)
-  }
+    return (
+		<div className="enter-message-div">
+			<div className="form-group">
+				<input id="message" className="form-control" type="text" placeholder='Enter your message here' onKeyUp={this.handleSubmit}/>
+			</div>
+    </div>);
+	}
 });
 
 module.exports = MessageBox;

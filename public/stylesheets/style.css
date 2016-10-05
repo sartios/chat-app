@@ -9,7 +9,7 @@ body {
   height: calc(100% - 20px);
 }
 
-section#chatroom{
+div#chatroom{
   height: -moz-calc(100% - 80px);
   height: -webkit-calc(100% - 80px);
   height: calc(100% - 80px);
