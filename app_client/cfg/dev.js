@@ -13,13 +13,16 @@ var config = assign({}, baseConfig, {
     'webpack-dev-server/client?http://127.0.0.1:' + defaultConfig.port,
     'webpack/hot/only-dev-server',
     './app_client/src/index'
-
   ],
   cache: true,
   devtool: 'source-maps',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      'Promise': 'es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    }),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
     })
