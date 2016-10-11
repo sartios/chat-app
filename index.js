@@ -2,6 +2,7 @@ var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
 var socketIO = require('socket.io');
+var cors = require('cors');
 //var webpack = require('webpack');
 //var webpackDevMiddleware = require('webpack-dev-middleware');
 //var webpackConfig = require('./webpack.config');
@@ -14,6 +15,9 @@ var io = socketIO(server);
 
 var connections = [];
 
+app.use(cors({
+	origin: 'http://localhost:3000'
+}));
 
 app.use(express.static(__dirname + '/public'));
 //app.use(webpackDevMiddleware(webpack(webpackConfig)));
@@ -42,7 +46,7 @@ app.post('/', function(req, res){
 app.get('/connections', function(req, res){
 	res.status(200);
 	res.json({
-		"connections": connections
+		"connections": ['a','b','c']
 	});
 });
 
@@ -72,4 +76,10 @@ io.on('connection', function(socket){
 
 });
 
-server.listen(8000);
+server.listen(8000, function(err){
+	if(err){
+		console.log(err);
+	}
+
+	console.log('Listening at localhost:8000');
+});

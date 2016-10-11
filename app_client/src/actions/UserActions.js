@@ -7,6 +7,9 @@ var UserActions = {
 		var self = this;
 		SocketHandler.addEventListener('user_connected', self.userConnected);
 		SocketHandler.addEventListener('user_disconnected', self.userDisconnected);
+		fetch('http://localhost:8000/connections').then(function(response){
+			console.log(response);
+		});
 	},
 	userConnected: function(user){
 		console.log('userConnected ' + user.id);
