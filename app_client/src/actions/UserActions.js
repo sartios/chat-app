@@ -8,7 +8,15 @@ var UserActions = {
 		SocketHandler.addEventListener('user_connected', self.userConnected);
 		SocketHandler.addEventListener('user_disconnected', self.userDisconnected);
 		fetch('http://localhost:8000/connections').then(function(response){
-			console.log(response);
+			return response.json();
+		}).then(function(body){
+			var connections = JSON.parse(body.connections);
+			for(var i = 0; i < connections.length; i++){
+				AppDispatcher.dispatch({
+					actionType: UserConstants.USER_CONNECT,
+					user: {id:connections[i]}
+				});
+			}
 		});
 	},
 	userConnected: function(user){

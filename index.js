@@ -45,8 +45,11 @@ app.post('/', function(req, res){
 
 app.get('/connections', function(req, res){
 	res.status(200);
+	var users = JSON.stringify(connections.map(function(socket){
+		return socket.id.slice(8);
+	}));
 	res.json({
-		"connections": ['a','b','c']
+		"connections": users
 	});
 });
 
